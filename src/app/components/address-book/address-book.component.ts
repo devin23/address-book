@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddressService } from 'src/app/services/address/address.service';
 
 @Component({
   selector: 'app-address-book',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddressBookComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['name', 'address', 'email', 'phone'];
+
+  constructor(public addressService: AddressService) { }
 
   ngOnInit() {}
 
