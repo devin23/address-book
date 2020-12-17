@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AddressService } from 'src/app/services/address/address.service';
 import {PhonePipe} from '../../pipes/phone.pipe';
+import { ModalController } from '@ionic/angular';
+import { EditAddressComponent } from './edit-address/edit-address.component';
+import { Address } from '../../models/address';
 
 @Component({
   selector: 'app-address-book',
@@ -31,7 +34,7 @@ export class AddressBookComponent implements OnInit {
   ];
   displayedColumns: string[];
 
-  constructor(public addressService: AddressService) { }
+  constructor(public addressService: AddressService, private modalController: ModalController) { }
 
   ngOnInit() {
     this.setDisplayColumns();
@@ -43,6 +46,19 @@ export class AddressBookComponent implements OnInit {
     this.displayedColumns = this.columns
       .filter((column) => column.minVisibleWidth < windowWidth)
       .map((column) => column.title);
+  }
+
+  async createAddress(){
+    await this.editAddress();
+  }
+
+  async editAddress(address:Address = {}){
+    const modal = await this.modalController.create({
+      component: EditAddressComponent,
+      cssClass: '',
+      componentProps: {address:address}
+    });
+    return await modal.present();
   }
 
 

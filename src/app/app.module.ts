@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AddressBookComponent } from './components/address-book/address-book.component';
+import { EditAddressComponent } from './components/address-book/edit-address/edit-address.component';
 import { AddressService } from './services/address/address.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,8 +17,8 @@ import { MatTableModule } from '@angular/material/table';
 import { PhonePipe } from './pipes/phone.pipe';
 
 @NgModule({
-  declarations: [AppComponent, AddressBookComponent, PhonePipe],
-  entryComponents: [],
+  declarations: [AppComponent, AddressBookComponent, EditAddressComponent, PhonePipe],
+  entryComponents: [EditAddressComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

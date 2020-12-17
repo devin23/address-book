@@ -1,4 +1,4 @@
-export interface address {
+export interface Address {
     name?: string;
     address?: string;
     email?: string;
