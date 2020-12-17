@@ -12,7 +12,7 @@
 
     <ng-container [matColumnDef]="column.title"  *ngFor="let column of columns">
       <th class="column header" mat-header-cell *matHeaderCellDef>{{column.title}}</th>
-      <td class="column" mat-cell *matCellDef="let address">{{address[column.attr]}}</td>
+      <td class="column" mat-cell *matCellDef="let address">{{ column.pipe ? column.pipe.transform(address[column.attr]) : address[column.attr] }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

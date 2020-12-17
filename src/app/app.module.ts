@@ -13,9 +13,10 @@ import { AddressService } from './services/address/address.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import { PhonePipe } from './pipes/phone.pipe';
 
 @NgModule({
-  declarations: [AppComponent, AddressBookComponent],
+  declarations: [AppComponent, AddressBookComponent, PhonePipe],
   entryComponents: [],
   imports: [
     BrowserModule,

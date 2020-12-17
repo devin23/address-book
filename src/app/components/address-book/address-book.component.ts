@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddressService } from 'src/app/services/address/address.service';
+import {PhonePipe} from '../../pipes/phone.pipe';
 
 @Component({
   selector: 'app-address-book',
@@ -25,6 +26,7 @@ export class AddressBookComponent implements OnInit {
       title: 'Phone',
       attr: 'phone',
       minVisibleWidth: 800,
+      pipe: new PhonePipe(),
     },
   ];
   displayedColumns: string[];
