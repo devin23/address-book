@@ -1,4 +1,16 @@
+.table-container{
+    margin: 0 15px;
 
-.address-table{
-    width: 100%;
+    .address-table{
+        width: 100%;
+        
+        .column{
+            padding-right: 15px;
+            word-break: break-all;
+            
+            &.header{
+                background: var(--ion-background-color);
+            }
+        }
+    }
 }
