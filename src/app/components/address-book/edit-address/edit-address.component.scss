@@ -1,0 +1,33 @@
+.content{
+    margin: 0 15px 15px 15px;
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+
+    .input-field{
+        --padding-start: 0;
+
+        .bottom-margin{
+            margin-bottom: 14px;
+        }
+    }
+
+    .input-error-message{
+        font-size: 12px;
+        color: var(--ion-color-danger);
+    }
+
+    .buttons-container{
+        display: flex;
+        margin-top: 10px;
+
+        .action-button{
+            flex: auto;
+        }
+    }
+
+    .left-margin{
+        margin-left: 20px;
+    }
+
+}

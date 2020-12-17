@@ -8,7 +8,7 @@
 
 <ion-content [fullscreen]="true">
   <div class="table-container">
-    <table class="address-table" mat-table [dataSource]="addressService.addresses" fixedLayout=true>
+    <table class="address-table" mat-table [dataSource]="addressService.sortedAddresses" fixedLayout=true>
 
     <ng-container [matColumnDef]="column.title"  *ngFor="let column of columns">
       <th class="column header" mat-header-cell *matHeaderCellDef>{{column.title}}</th>

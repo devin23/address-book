@@ -14,6 +14,7 @@ import { AddressService } from './services/address/address.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
 import { PhonePipe } from './pipes/phone.pipe';
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PhonePipe } from './pipes/phone.pipe';
     IonicModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule,
   ],
   providers: [
     StatusBar,

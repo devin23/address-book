@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Address } from 'src/app/models/address';
+import { sortBy } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddressService {
+
+  sortedAddresses: Address[] = [];
 
   addresses: Address[] = [
     {name: 'person 1', address: '123 Secret Pl Garden City, NM 12345' , phone: 1234567890, email: 'test@test.com'},
@@ -21,5 +24,11 @@ export class AddressService {
     {name: 'person 4', address: '' , phone: 4234567890, email: ''},
   ]
 
-  constructor() { }
+  constructor() {
+    this.sortAddresses();
+  }
+
+  sortAddresses(){
+    this.sortedAddresses = sortBy(this.addresses,['name']);
+  }
 }

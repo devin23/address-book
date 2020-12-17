@@ -49,14 +49,12 @@ export class AddressBookComponent implements OnInit {
   }
 
   async createAddress(){
-    await this.editAddress();
-  }
+    const mobileView = Math.min(window.innerWidth, window.innerHeight) < 500;
 
-  async editAddress(address:Address = {}){
     const modal = await this.modalController.create({
       component: EditAddressComponent,
-      cssClass: '',
-      componentProps: {address:address}
+      cssClass: mobileView ? '' : 'edit-address-modal',
+      backdropDismiss: false,
     });
     return await modal.present();
   }
