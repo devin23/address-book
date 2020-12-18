@@ -16,10 +16,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
-import { PhonePipe } from './pipes/phone.pipe';
+import { PhonePipe } from './pipes/phone/phone.pipe';
+import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
 
 @NgModule({
-  declarations: [AppComponent, AddressBookComponent, EditContactComponent, ViewContactComponent, PhonePipe],
+  declarations: [AppComponent, AddressBookComponent, EditContactComponent, ViewContactComponent, PhonePipe, MapLinkPipe],
   entryComponents: [EditContactComponent, ViewContactComponent],
   imports: [
     BrowserModule,

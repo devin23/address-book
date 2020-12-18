@@ -10,9 +10,28 @@
   <div class="table-container">
     <table class="contacts-table" mat-table [dataSource]="addressBookService.sortedContacts" fixedLayout=true>
 
-    <ng-container [matColumnDef]="column.title"  *ngFor="let column of columns">
-      <th class="column header" mat-header-cell *matHeaderCellDef>{{column.title}}</th>
-      <td class="column" mat-cell *matCellDef="let contact">{{ column.pipe ? column.pipe.transform(contact[column.attr]) : contact[column.attr] }}</td>
+    <ng-container matColumnDef="name">
+      <th class="column header" mat-header-cell *matHeaderCellDef>Name</th>
+      <td class="column" mat-cell *matCellDef="let contact">{{ contact.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th class="column header" mat-header-cell *matHeaderCellDef>Address</th>
+      <td class="column" mat-cell *matCellDef="let contact">
+        <a [href]="contact.address | mapLink" target="_black" (click)="stopProp($event)">{{ contact.address }}</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th class="column header" mat-header-cell *matHeaderCellDef>Email</th>
+      <td class="column" mat-cell *matCellDef="let contact">
+        <a [href]="'mailto:'+contact.email" (click)="stopProp($event)">{{ contact.email }}</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th class="column header" mat-header-cell *matHeaderCellDef>Phone</th>
+      <td class="column" mat-cell *matCellDef="let contact">{{ contact.phone | phone }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

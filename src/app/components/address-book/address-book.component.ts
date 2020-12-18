@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AddressBookService } from 'src/app/services/address-book/address-book.service';
-import {PhonePipe} from '../../pipes/phone.pipe';
 import { ModalController } from '@ionic/angular';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { ViewContactComponent } from './view-contact/view-contact.component';
@@ -15,22 +14,17 @@ export class AddressBookComponent implements OnInit {
 
   columns = [
     {
-      title: 'Name',
-      attr: 'name',
+      columnDef: 'name',
       minVisibleWidth: 0,
     },{
-      title: 'Address',
-      attr: 'address',
+      columnDef: 'address',
       minVisibleWidth: 400,
     },{
-      title: 'Email',
-      attr: 'email',
+      columnDef: 'email',
       minVisibleWidth: 600,
     },{
-      title: 'Phone',
-      attr: 'phone',
+      columnDef: 'phone',
       minVisibleWidth: 800,
-      pipe: new PhonePipe(),
     },
   ];
   displayedColumns: string[];
@@ -46,7 +40,7 @@ export class AddressBookComponent implements OnInit {
     const windowWidth = window.innerWidth;
     this.displayedColumns = this.columns
       .filter((column) => column.minVisibleWidth < windowWidth)
-      .map((column) => column.title);
+      .map((column) => column.columnDef);
   }
 
   async createContact(){
@@ -72,6 +66,8 @@ export class AddressBookComponent implements OnInit {
     return await modal.present();
   }
 
-
+  stopProp(event){
+    event.stopPropagation();
+  }
 
 }
