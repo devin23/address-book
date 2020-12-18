@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Address } from '../../../models/address';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { cloneDeep } from 'lodash';
 import { AddressService } from 'src/app/services/address/address.service';
 
@@ -24,10 +24,11 @@ export class EditAddressComponent implements OnInit {
   _address:Address = {};
   originalAddress;
   edit;
+  addressForm;
 
-  close = async () => await this.modalController.dismiss();
+  close = async (data?) => await this.modalController.dismiss(data);
 
-  constructor(private modalController: ModalController, private addressService: AddressService) { }
+  constructor(private modalController: ModalController, private addressService: AddressService, private alertController: AlertController) { }
 
   ngOnInit() {}
 
@@ -40,6 +41,30 @@ export class EditAddressComponent implements OnInit {
       }
       this.addressService.sortAddresses();
       await this.close();
+    }
+  }
+  
+  async delete(){
+    await this.addressService.delete(this.originalAddress, this.close);
+  }
+
+  async cancel(form){
+    if(form.pristine){
+      await this.close();
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Cancel',
+        message: 'Are you sure you want to <strong>cancel</strong> your changes?',
+        buttons: [
+          'Cancel',
+          {
+            text: 'Confirm',
+            handler: async () => await this.close()
+          }
+        ]
+      });
+  
+      await alert.present()
     }
   }
 }

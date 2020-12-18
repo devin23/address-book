@@ -3,12 +3,15 @@
     <ion-title>
       {{edit ? 'Edit ' : 'Add '}} Contact
     </ion-title>
-    <ion-button slot="end" fill="clear" (click)="close()" color="medium" size="small">
+    <ion-button slot="end" fill="clear" (click)="delete()" color="danger" size="small" *ngIf="edit">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" fill="clear" (click)="cancel(addressForm)" color="medium" size="small">
       <ion-icon name="close-outline"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-header>
-<form #f="ngForm" (ngSubmit)="save(f)" (keyup.enter)="save(f)" class="content">
+<form #addressForm="ngForm" (ngSubmit)="save(addressForm)" (keyup.enter)="save(addressForm)" class="content">
   <ion-content>
       <ion-item class="input-field bottom-margin">
         <ion-label position="floating">Name</ion-label>
@@ -22,14 +25,14 @@
         <ion-label position="floating">Email</ion-label>
         <ion-input [(ngModel)]="address.email" name="email" email></ion-input>
       </ion-item>
-      <span [class.hidden]="f.controls.email?.valid" class="input-error-message">Invalid email format</span>
+      <span [class.hidden]="addressForm.controls.email?.valid" class="input-error-message">Invalid email format</span>
       <ion-item class="input-field bottom-margin">
         <ion-label position="floating">Phone Number</ion-label>
         <ion-input type="number" name="phone" [(ngModel)]="address.phone"></ion-input>
       </ion-item>
   </ion-content>
   <div class="buttons-container">
-    <ion-button class="action-button" slot="end" (click)="close()" color="light">Cancel</ion-button>
+    <ion-button class="action-button" #cancelButton slot="end" (click)="cancel(addressForm)" color="light">Cancel</ion-button>
     <ion-button class="action-button left-margin" slot="end" type="submit" color="secondary">Save</ion-button>
   </div>
 </form>

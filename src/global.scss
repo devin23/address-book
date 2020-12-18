@@ -27,7 +27,7 @@
 
 
 .ion-page{
-    .edit-address-modal{
+    .address-modal{
         --height: 426px;
         --width: 350px;
     }
@@ -35,4 +35,8 @@
 
 .hidden{
     visibility: hidden;
+}
+
+.clickable{
+    cursor: pointer;
 }
