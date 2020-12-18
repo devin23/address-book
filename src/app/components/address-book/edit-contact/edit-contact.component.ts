@@ -1,51 +1,50 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Address } from '../../../models/address';
+import { Contact } from '../../../models/contact.model';
 import { ModalController, AlertController } from '@ionic/angular';
 import { cloneDeep } from 'lodash';
-import { AddressService } from 'src/app/services/address/address.service';
+import { AddressBookService } from 'src/app/services/address-book/address-book.service';
 
 @Component({
-  selector: 'app-edit-address',
-  templateUrl: './edit-address.component.html',
-  styleUrls: ['./edit-address.component.scss'],
+  selector: 'app-edit-contact',
+  templateUrl: './edit-contact.component.html',
+  styleUrls: ['./edit-contact.component.scss'],
 })
-export class EditAddressComponent implements OnInit {
+export class EditContactComponent implements OnInit {
 
-  @Input() set address(val:Address){
+  @Input() set contact(val:Contact){
     if(val){
       this.edit = true;
-      this.originalAddress = val;
-      this._address = cloneDeep(val);
+      this.originalContact = val;
+      this._contact = cloneDeep(val);
     }
   }
-  get address(){
-    return this._address;
+  get contact(){
+    return this._contact;
   }
-  _address:Address = {};
-  originalAddress;
+  _contact:Contact = {};
+  originalContact;
   edit;
-  addressForm;
 
   close = async (data?) => await this.modalController.dismiss(data);
 
-  constructor(private modalController: ModalController, private addressService: AddressService, private alertController: AlertController) { }
+  constructor(private modalController: ModalController, private addressBookService: AddressBookService, private alertController: AlertController) { }
 
   ngOnInit() {}
 
   async save(form){
     if(form.valid){
       if(this.edit){
-        Object.assign(this.originalAddress,this.address);
+        Object.assign(this.originalContact,this.contact);
       } else {
-        this.addressService.addresses.push(this.address);
+        this.addressBookService.contacts.push(this.contact);
       }
-      this.addressService.sortAddresses();
+      this.addressBookService.sortContacts();
       await this.close();
     }
   }
   
   async delete(){
-    await this.addressService.delete(this.originalAddress, this.close);
+    await this.addressBookService.delete(this.originalContact, this.close);
   }
 
   async cancel(form){

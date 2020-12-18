@@ -8,9 +8,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AddressBookComponent } from './components/address-book/address-book.component';
-import { EditAddressComponent } from './components/address-book/edit-address/edit-address.component';
+import { EditContactComponent } from './components/address-book/edit-contact/edit-contact.component';
 import { ViewContactComponent } from './components/address-book/view-contact/view-contact.component';
-import { AddressService } from './services/address/address.service';
+import { AddressBookService } from './services/address-book/address-book.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,8 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { PhonePipe } from './pipes/phone.pipe';
 
 @NgModule({
-  declarations: [AppComponent, AddressBookComponent, EditAddressComponent, ViewContactComponent, PhonePipe],
-  entryComponents: [EditAddressComponent, ViewContactComponent],
+  declarations: [AppComponent, AddressBookComponent, EditContactComponent, ViewContactComponent, PhonePipe],
+  entryComponents: [EditContactComponent, ViewContactComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -32,7 +32,7 @@ import { PhonePipe } from './pipes/phone.pipe';
   providers: [
     StatusBar,
     SplashScreen,
-    AddressService,
+    AddressBookService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

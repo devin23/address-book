@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Address } from '../../../models/address';
+import { Contact } from '../../../models/contact.model';
 import { ModalController } from '@ionic/angular';
-import { AddressService } from 'src/app/services/address/address.service';
-import { EditAddressComponent } from '../edit-address/edit-address.component';
+import { AddressBookService } from 'src/app/services/address-book/address-book.service';
+import { EditContactComponent } from '../edit-contact/edit-contact.component';
 
 @Component({
   selector: 'app-view-contact',
@@ -11,25 +11,25 @@ import { EditAddressComponent } from '../edit-address/edit-address.component';
 })
 export class ViewContactComponent implements OnInit {
 
-  @Input() contact: Address;
+  @Input() contact: Contact;
 
   close = async () => await this.modalController.dismiss();
 
-  constructor(private modalController: ModalController, private addressService: AddressService) { }
+  constructor(private modalController: ModalController, private addressBookService: AddressBookService) { }
 
   ngOnInit() {}
 
   async delete(){
-    await this.addressService.delete(this.contact, this.close);
+    await this.addressBookService.delete(this.contact, this.close);
   }
 
   async edit(){
     const mobileView = Math.min(window.innerWidth, window.innerHeight) < 500;
 
     const modal = await this.modalController.create({
-      component: EditAddressComponent,
-      cssClass: mobileView ? '' : 'address-modal',
-      componentProps: {address: this.contact},
+      component: EditContactComponent,
+      cssClass: mobileView ? '' : 'contact-modal',
+      componentProps: {contact: this.contact},
       backdropDismiss: false,
     });
 

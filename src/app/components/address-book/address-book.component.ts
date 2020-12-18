@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AddressService } from 'src/app/services/address/address.service';
+import { AddressBookService } from 'src/app/services/address-book/address-book.service';
 import {PhonePipe} from '../../pipes/phone.pipe';
 import { ModalController } from '@ionic/angular';
-import { EditAddressComponent } from './edit-address/edit-address.component';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { ViewContactComponent } from './view-contact/view-contact.component';
-import { Address } from '../../models/address';
+import { Contact } from '../../models/contact.model';
 
 @Component({
   selector: 'app-address-book',
@@ -35,7 +35,7 @@ export class AddressBookComponent implements OnInit {
   ];
   displayedColumns: string[];
 
-  constructor(public addressService: AddressService, private modalController: ModalController) { }
+  constructor(public addressBookService: AddressBookService, private modalController: ModalController) { }
 
   ngOnInit() {
     this.setDisplayColumns();
@@ -49,23 +49,23 @@ export class AddressBookComponent implements OnInit {
       .map((column) => column.title);
   }
 
-  async createAddress(){
+  async createContact(){
     const mobileView = Math.min(window.innerWidth, window.innerHeight) < 500;
 
     const modal = await this.modalController.create({
-      component: EditAddressComponent,
-      cssClass: mobileView ? '' : 'address-modal',
+      component: EditContactComponent,
+      cssClass: mobileView ? '' : 'contact-modal',
       backdropDismiss: false,
     });
     return await modal.present();
   }
 
-  async viewContact(contact: Address){
+  async viewContact(contact: Contact){
     const mobileView = Math.min(window.innerWidth, window.innerHeight) < 500;
 
     const modal = await this.modalController.create({
       component: ViewContactComponent,
-      cssClass: mobileView ? '' : 'address-modal',
+      cssClass: mobileView ? '' : 'contact-modal',
       componentProps:{contact: contact},
     });
 

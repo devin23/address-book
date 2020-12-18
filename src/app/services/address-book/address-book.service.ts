@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Address } from 'src/app/models/address';
+import { Contact } from 'src/app/models/contact.model';
 import { sortBy } from 'lodash';
 import { AlertController } from '@ionic/angular';
 import { pull } from 'lodash';
@@ -7,11 +7,11 @@ import { pull } from 'lodash';
 @Injectable({
   providedIn: 'root'
 })
-export class AddressService {
+export class AddressBookService {
 
-  sortedAddresses: Address[] = [];
+  sortedContacts: Contact[] = [];
 
-  addresses: Address[] = [
+  contacts: Contact[] = [
     {name: 'person 1', address: '123 Secret Pl Garden City, NM 12345' , phone: 1234567890, email: 'test@test.com'},
     {name: 'person 2', address: '' , phone: 2234567890, email: ''},
     {name: 'person 3', address: '' , phone: 3234567890, email: ''},
@@ -27,11 +27,11 @@ export class AddressService {
   ]
 
   constructor(private alertController: AlertController) {
-    this.sortAddresses();
+    this.sortContacts();
   }
 
-  sortAddresses(){
-    this.sortedAddresses = sortBy(this.addresses,['name']);
+  sortContacts(){
+    this.sortedContacts = sortBy(this.contacts,['name']);
   }
 
   async delete(contact, closeFunction){
@@ -43,8 +43,8 @@ export class AddressService {
         {
           text: 'Confirm',
           handler: async () => {
-            pull(this.addresses,contact);
-            this.sortAddresses();
+            pull(this.contacts,contact);
+            this.sortContacts();
             await closeFunction('delete');
           }
         }
