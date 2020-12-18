@@ -33,6 +33,10 @@
       <ion-label position="floating">Phone Number</ion-label>
       <ion-input type="number" name="phone" [(ngModel)]="contact.phone" clearInput></ion-input>
     </ion-item>
+    <ion-item class="input-field bottom-margin">
+      <ion-label position="floating">Note</ion-label>
+      <ion-textarea name="note" [(ngModel)]="contact.note" clearInput></ion-textarea>
+    </ion-item>
   </ion-content>
   <div class="buttons-container">
     <ion-button class="action-button" #cancelButton slot="end" (click)="cancel(contactForm)" color="light">Cancel</ion-button>

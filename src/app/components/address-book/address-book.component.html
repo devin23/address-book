@@ -50,6 +50,13 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="note">
+        <th class="column header" mat-header-cell *matHeaderCellDef mat-sort-header>Note</th>
+        <td class="column" mat-cell *matCellDef="let contact">
+          <ion-icon class="note-icon" [name]="'reader' + (contact.note ? '' : '-outline')" (click)="showContactNote(contact.note,$event)"></ion-icon>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let contact; columns: displayedColumns;" class="clickable" (click)="viewContact(contact)">
       </tr>

@@ -13,6 +13,7 @@ import { ViewContactComponent } from './components/address-book/view-contact/vie
 import { PhoneOptionsComponent } from './components/phone-options/phone-options.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ImgLoaderComponent } from './components/img-loader/img-loader.component';
+import { ViewTextComponent } from './components/view-text/view-text.component';
 
 import { AddressBookService } from './services/address-book/address-book.service';
 import { PlatformService } from './services/platfom/platform.service';
@@ -35,9 +36,10 @@ import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
     PhoneOptionsComponent,
     MenuComponent,
     ImgLoaderComponent,
+    ViewTextComponent,
     PhonePipe,
     MapLinkPipe],
-  entryComponents: [EditContactComponent, ViewContactComponent, PhoneOptionsComponent],
+  entryComponents: [EditContactComponent, ViewContactComponent, PhoneOptionsComponent, ViewTextComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
