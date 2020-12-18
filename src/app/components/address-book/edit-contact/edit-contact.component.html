@@ -15,20 +15,20 @@
   <ion-content>
       <ion-item class="input-field bottom-margin">
         <ion-label position="floating">Name</ion-label>
-        <ion-input name="name" [(ngModel)]="contact.name"></ion-input>
+        <ion-input name="name" [(ngModel)]="contact.name" clearInput></ion-input>
       </ion-item>
       <ion-item class="input-field bottom-margin">
         <ion-label position="floating">Address</ion-label>
-        <ion-input name="address" [(ngModel)]="contact.address"></ion-input>
+        <ion-input name="address" [(ngModel)]="contact.address" clearInput></ion-input>
       </ion-item>
       <ion-item class="input-field">
         <ion-label position="floating">Email</ion-label>
-        <ion-input [(ngModel)]="contact.email" name="email" email></ion-input>
+        <ion-input [(ngModel)]="contact.email" name="email" email clearInput></ion-input>
       </ion-item>
       <span [class.hidden]="contactForm.controls.email?.valid" class="input-error-message">Invalid email format</span>
       <ion-item class="input-field bottom-margin">
         <ion-label position="floating">Phone Number</ion-label>
-        <ion-input type="number" name="phone" [(ngModel)]="contact.phone"></ion-input>
+        <ion-input type="number" name="phone" [(ngModel)]="contact.phone" clearInput></ion-input>
       </ion-item>
   </ion-content>
   <div class="buttons-container">
