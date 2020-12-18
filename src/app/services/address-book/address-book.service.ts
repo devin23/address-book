@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Contact } from 'src/app/models/contact.model';
-import { sortBy } from 'lodash';
 import { AlertController } from '@ionic/angular';
 import { pull } from 'lodash';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddressBookService {
 
-  sortedContacts: Contact[] = [];
+  favoritesCount = 0;
+  selectedFilterType = 'all';
+
+  _filterContacts: BehaviorSubject<Contact[]> = new BehaviorSubject([]);
+  filterContacts$ = this._filterContacts.asObservable();
 
   contacts: Contact[] = [
     {name: 'person 1', address: '123 Secret Pl Garden City, NM 12345' , phone: 1234567890, email: 'test@test.com'},
@@ -27,11 +31,25 @@ export class AddressBookService {
   ]
 
   constructor(private alertController: AlertController) {
-    this.sortContacts();
+    this.filterContacts();
   }
 
-  sortContacts(){
-    this.sortedContacts = sortBy(this.contacts,['name']);
+  filterContacts(filterType?: 'all' | 'favorite',){
+    if(filterType){
+      this.selectedFilterType = filterType;
+    }
+
+    let filteredContacts = [];
+
+    if(this.selectedFilterType){
+      if(this.selectedFilterType === 'all'){
+        filteredContacts = this.contacts;
+      } else {
+        filteredContacts = this.contacts.filter(contact => contact.favorite);
+      }
+    }
+
+    this._filterContacts.next(filteredContacts);
   }
 
   async delete(contact, closeFunction){
@@ -44,7 +62,7 @@ export class AddressBookService {
           text: 'Confirm',
           handler: async () => {
             pull(this.contacts,contact);
-            this.sortContacts();
+            this.filterContacts();
             await closeFunction('delete');
           }
         }

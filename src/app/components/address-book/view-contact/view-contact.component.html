@@ -4,6 +4,9 @@
       View Contact
     </ion-title>
     <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="favorite()" color="warning" size="small">
+        <ion-icon [name]="'star' + (contact.favorite ? '' : '-outline')"></ion-icon>
+      </ion-button>
       <ion-button fill="clear" (click)="edit()" color="secondary" size="small">
         <ion-icon name="create-outline"></ion-icon>
       </ion-button>

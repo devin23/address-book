@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddressBookService } from 'src/app/services/address-book/address-book.service';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { ViewContactComponent } from './view-contact/view-contact.component';
 import { Contact } from '../../models/contact.model';
 import { PlatformService } from 'src/app/services/platfom/platform.service';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
 import { ViewTextComponent } from '../view-text/view-text.component';
 
 @Component({
@@ -13,6 +15,9 @@ import { ViewTextComponent } from '../view-text/view-text.component';
   styleUrls: ['./address-book.component.scss'],
 })
 export class AddressBookComponent implements OnInit {
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<any>;
 
   columns = [
     {
@@ -36,6 +41,8 @@ export class AddressBookComponent implements OnInit {
     },
   ];
   displayedColumns: string[];
+  dataSource = new MatTableDataSource(this.addressBookService.contacts);
+  filterText;
 
   constructor(
     public addressBookService: AddressBookService, 
@@ -47,6 +54,24 @@ export class AddressBookComponent implements OnInit {
   ngOnInit() {
     this.setDisplayColumns();
     window.onresize = () => this.setDisplayColumns();
+  }
+  
+  ngAfterViewInit() {
+    this.addressBookService.filterContacts$.subscribe(data => this.dataSource.data = data);
+
+    this.dataSource.sort = this.sort;
+
+    this.dataSource.filterPredicate = (data,filter) => {
+      if(filter){
+        return this.displayedColumns.some( column => data[column]?.toString().toLowerCase().indexOf(filter) >= 0);
+      } else {
+        return true
+      }
+    }
+  }
+
+  applyFilter(){
+    this.dataSource.filter = this.filterText?.toLowerCase();
   }
 
   setDisplayColumns() {

@@ -45,4 +45,10 @@ export class ViewContactComponent implements OnInit {
     return await modal.present();
   }
 
+  favorite(){
+    this.contact.favorite = !this.contact.favorite;
+    this.addressBookService.favoritesCount += this.contact.favorite ? 1 : -1;
+    this.addressBookService.filterContacts();
+  }
+
 }

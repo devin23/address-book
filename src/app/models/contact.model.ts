@@ -5,4 +5,5 @@ export interface Contact {
     phone?: number;
     img?:string;
     note?: string;
+    favorite?: boolean;
 }

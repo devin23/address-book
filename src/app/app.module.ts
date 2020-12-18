@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSortModule  } from '@angular/material/sort';
+import { MatMenuModule  } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 import { PhonePipe } from './pipes/phone/phone.pipe';
 import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
@@ -48,7 +49,8 @@ import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
     MatTableModule,
     FormsModule,
     MatDividerModule,
-    MatSortModule
+    MatSortModule,
+    MatMenuModule
   ],
   providers: [
     StatusBar,

@@ -38,7 +38,7 @@ export class EditContactComponent implements OnInit {
       } else {
         this.addressBookService.contacts.push(this.contact);
       }
-      this.addressBookService.sortContacts();
+      this.addressBookService.filterContacts();
       await this.close();
     }
   }

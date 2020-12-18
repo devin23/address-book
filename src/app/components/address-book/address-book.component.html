@@ -1,14 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Address Book
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title mode="md">
+      Address Book - {{addressBookService.selectedFilterType}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-toolbar>
+  <ion-searchbar placeholder="Search" [(ngModel)]="filterText" (ionChange)="applyFilter()"></ion-searchbar>
+</ion-toolbar>
+
 <ion-content [fullscreen]="true">
   <div class="table-container">
-    <table class="contacts-table" mat-table [dataSource]="addressBookService.sortedContacts" fixedLayout=true>
+
+    <table class="contacts-table" mat-table matSort matSortActive="name" matSortDirection="asc"
+      [dataSource]="dataSource" fixedLayout=true>
 
       <ng-container matColumnDef="image">
         <th class="column header img-column" mat-header-cell *matHeaderCellDef></th>

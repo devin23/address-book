@@ -1,0 +1,27 @@
+<ion-menu side="start" type="overlay" menuId="menu" contentId="main" class="page-menu">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Categories</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list lines="none">
+      <ion-item class="clickable" (click)="filterContacts('all')">
+        <ion-icon name="person-circle-outline" slot="start" [color]=" addressBookService.selectedFilterType === 'all' ? 'secondary' : ''"></ion-icon>
+        <ion-label class="space-between" [color]=" addressBookService.selectedFilterType === 'all' ? 'secondary' : ''">
+          <span>Contacts</span>
+          <span>({{addressBookService.contacts.length}})</span>
+        </ion-label>
+      </ion-item>
+      <ion-item class="clickable" [class.active]="addressBookService.selectedFilterType === 'all'" (click)="filterContacts('favorites')">
+        <ion-icon name="star" slot="start" [color]=" addressBookService.selectedFilterType === 'favorite' ? 'secondary' : ''"></ion-icon>
+        <ion-label class="space-between" [color]=" addressBookService.selectedFilterType === 'favorite' ? 'secondary' : ''">
+          <span>Favorites</span>
+          <span>({{addressBookService.favoritesCount}})</span>
+        </ion-label>
+      </ion-item>
+      <mat-divider></mat-divider>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
