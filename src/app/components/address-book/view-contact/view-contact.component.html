@@ -17,15 +17,15 @@
   <ion-content>
     <ion-list lines="none">
       <ion-item *ngIf="contact.name" lines="full">
-        <ion-label>{{contact.name}}</ion-label>
+        <ion-label class="ion-text-wrap">{{contact.name}}</ion-label>
       </ion-item>
       <ion-item *ngIf="contact.address">
         <ion-icon name="location-outline" slot="start"></ion-icon>
-        <ion-label>{{contact.address}}</ion-label>
+        <ion-label class="ion-text-wrap"><a [href]="contact.address | mapLink">{{contact.address}}</a></ion-label>
       </ion-item>
       <ion-item *ngIf="contact.email">
         <ion-icon name="mail-outline" slot="start"></ion-icon>
-        <ion-label>{{contact.email}}</ion-label>
+        <ion-label class="ion-text-wrap"><a [href]="'mailto:'+contact.email">{{contact.email}}</a></ion-label>
       </ion-item>
       <ion-item *ngIf="contact.phone">
         <ion-icon name="call-outline" slot="start"></ion-icon>
@@ -33,4 +33,3 @@
       </ion-item>
     </ion-list>
   </ion-content>
-  
