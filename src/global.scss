@@ -26,11 +26,13 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
-.ion-page{
-    .contact-modal{
-        --height: 426px;
-        --width: 350px;
-    }
+.contact-modal{
+    --height: 426px;
+    --width: 350px;
+}
+
+.phone-options-popover{
+    --width: 100px;
 }
 
 .hidden{

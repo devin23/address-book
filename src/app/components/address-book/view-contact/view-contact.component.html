@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
+    <ion-title mode="md">
       View Contact
     </ion-title>
     <ion-button slot="end" fill="clear" (click)="edit()" color="secondary" size="small">
@@ -29,7 +29,12 @@
       </ion-item>
       <ion-item *ngIf="contact.phone">
         <ion-icon name="call-outline" slot="start"></ion-icon>
-        <ion-label>{{contact.phone | phone}}</ion-label>
+        <ion-label>
+          <ng-container *ngIf="!platformService.isMobileDevice; else phoneWithLinks">{{ contact.phone | phone }}</ng-container>
+          <ng-template #phoneWithLinks>
+            <a (click)="platformService.openPhoneOptions(contact,$event)">{{ contact.phone | phone }}</a>
+          </ng-template>
+        </ion-label>
       </ion-item>
     </ion-list>
   </ion-content>

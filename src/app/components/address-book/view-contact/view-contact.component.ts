@@ -3,6 +3,7 @@ import { Contact } from '../../../models/contact.model';
 import { ModalController } from '@ionic/angular';
 import { AddressBookService } from 'src/app/services/address-book/address-book.service';
 import { EditContactComponent } from '../edit-contact/edit-contact.component';
+import { PlatformService } from 'src/app/services/platfom/platform.service';
 
 @Component({
   selector: 'app-view-contact',
@@ -15,7 +16,11 @@ export class ViewContactComponent implements OnInit {
 
   close = async () => await this.modalController.dismiss();
 
-  constructor(private modalController: ModalController, private addressBookService: AddressBookService) { }
+  constructor(
+    private modalController: ModalController,
+    private addressBookService: AddressBookService,
+    public platformService: PlatformService,
+  ) { }
 
   ngOnInit() {}
 

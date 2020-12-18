@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { ViewContactComponent } from './view-contact/view-contact.component';
 import { Contact } from '../../models/contact.model';
+import { PlatformService } from 'src/app/services/platfom/platform.service';
 
 @Component({
   selector: 'app-address-book',
@@ -29,7 +30,11 @@ export class AddressBookComponent implements OnInit {
   ];
   displayedColumns: string[];
 
-  constructor(public addressBookService: AddressBookService, private modalController: ModalController) { }
+  constructor(
+    public addressBookService: AddressBookService, 
+    private modalController: ModalController, 
+    public platformService: PlatformService,
+  ) { }
 
   ngOnInit() {
     this.setDisplayColumns();

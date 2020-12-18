@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AddressBookComponent } from './components/address-book/address-book.component';
 import { EditContactComponent } from './components/address-book/edit-contact/edit-contact.component';
 import { ViewContactComponent } from './components/address-book/view-contact/view-contact.component';
+import { PhoneOptionsComponent } from './components/phone-options/phone-options.component';
 import { AddressBookService } from './services/address-book/address-book.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,8 +21,15 @@ import { PhonePipe } from './pipes/phone/phone.pipe';
 import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
 
 @NgModule({
-  declarations: [AppComponent, AddressBookComponent, EditContactComponent, ViewContactComponent, PhonePipe, MapLinkPipe],
-  entryComponents: [EditContactComponent, ViewContactComponent],
+  declarations: [
+    AppComponent,
+    AddressBookComponent,
+    EditContactComponent,
+    ViewContactComponent,
+    PhoneOptionsComponent,
+    PhonePipe,
+    MapLinkPipe],
+  entryComponents: [EditContactComponent, ViewContactComponent, PhoneOptionsComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

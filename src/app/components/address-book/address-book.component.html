@@ -31,7 +31,12 @@
 
     <ng-container matColumnDef="phone">
       <th class="column header" mat-header-cell *matHeaderCellDef>Phone</th>
-      <td class="column" mat-cell *matCellDef="let contact">{{ contact.phone | phone }}</td>
+      <td class="column" mat-cell *matCellDef="let contact">
+        <ng-container *ngIf="!platformService.isMobileDevice; else phoneWithLinks">{{ contact.phone | phone }}</ng-container>
+        <ng-template #phoneWithLinks>
+          <a (click)="platformService.openPhoneOptions(contact,$event)">{{ contact.phone | phone }}</a>
+        </ng-template>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
