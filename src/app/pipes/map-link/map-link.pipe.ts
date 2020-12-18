@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { isNil } from 'lodash';
 
 @Pipe({
   name: 'mapLink'
@@ -6,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MapLinkPipe implements PipeTransform {
 
   transform(address): string {
-    if(address === null){
+    if(isNil(address)){
       return '';
     }
 

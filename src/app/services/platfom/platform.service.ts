@@ -18,6 +18,10 @@ export class PlatformService {
         || this.platform.is('android'));
   }
 
+  isSmallScreen(){
+    return Math.min(window.innerWidth, window.innerHeight) < 500;
+  }
+
   async openPhoneOptions(contact: Contact, event: Event){
     event.stopPropagation();
 

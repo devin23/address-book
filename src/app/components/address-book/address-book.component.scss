@@ -1,5 +1,5 @@
 .table-container{
-    margin: 0 15px;
+    margin: 0 15px 15px 15px;
 
     .contacts-table{
         width: 100%;
@@ -10,6 +10,23 @@
             
             &.header{
                 background: var(--ion-background-color);
+            }
+
+            &.img-column{
+                width: 70px;
+            }
+
+            .contact-img{
+                height: 36px;
+                width: 36px;
+                border-radius: 50%;
+                object-fit: contain;
+                margin: 5px 0 0 4px;
+            }
+
+            .img-icon{
+                font-size: 40px;
+                padding-top: 3px;
             }
         }
     }

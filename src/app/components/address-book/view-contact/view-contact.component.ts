@@ -29,11 +29,9 @@ export class ViewContactComponent implements OnInit {
   }
 
   async edit(){
-    const mobileView = Math.min(window.innerWidth, window.innerHeight) < 500;
-
     const modal = await this.modalController.create({
       component: EditContactComponent,
-      cssClass: mobileView ? '' : 'contact-modal',
+      cssClass: this.platformService.isSmallScreen() ? '' : 'contact-modal',
       componentProps: {contact: this.contact},
       backdropDismiss: false,
     });

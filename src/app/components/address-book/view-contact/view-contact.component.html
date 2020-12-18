@@ -15,6 +15,7 @@
   </ion-toolbar>
 </ion-header>
   <ion-content>
+    <app-img-loader [(image)]="contact.img"></app-img-loader>
     <ion-list lines="none">
       <ion-item *ngIf="contact.name" lines="full">
         <ion-label class="ion-text-wrap">{{contact.name}}</ion-label>

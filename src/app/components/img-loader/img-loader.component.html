@@ -1,0 +1,13 @@
+<div class="img-loader-container">
+  <canvas #canvas class="no-display"></canvas>
+  <input #load class="no-display" type="file" (change)="onFileSelected($event)" accept="image" required name="image" placeholder="image*">
+
+  <img [src]="image"  *ngIf="image; else icon" class="contact-img">
+  <ng-template #icon>
+    <ion-icon name="person-circle-outline" class="placeholder-icon"></ion-icon>
+  </ng-template>
+  <ion-button fill="clear" (click)="load.click()" color="secondary" size="small" *ngIf="canEdit">
+    <ion-icon name="pencil-outline"></ion-icon>
+    <ion-label>Edit Image</ion-label>
+  </ion-button>
+</div>

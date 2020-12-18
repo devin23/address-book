@@ -10,43 +10,55 @@
   <div class="table-container">
     <table class="contacts-table" mat-table [dataSource]="addressBookService.sortedContacts" fixedLayout=true>
 
-    <ng-container matColumnDef="name">
-      <th class="column header" mat-header-cell *matHeaderCellDef>Name</th>
-      <td class="column" mat-cell *matCellDef="let contact">{{ contact.name }}</td>
-    </ng-container>
+      <ng-container matColumnDef="image">
+        <th class="column header img-column" mat-header-cell *matHeaderCellDef></th>
+        <td class="column" mat-cell *matCellDef="let contact">
+          <img [src]="contact.img" *ngIf="contact.img; else imgIcon" class="contact-img">
+          <ng-template #imgIcon>
+            <ion-icon name="person-circle-outline" class="img-icon"></ion-icon>
+          </ng-template>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="address">
-      <th class="column header" mat-header-cell *matHeaderCellDef>Address</th>
-      <td class="column" mat-cell *matCellDef="let contact">
-        <a [href]="contact.address | mapLink" target="_black" (click)="stopProp($event)">{{ contact.address }}</a>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="name">
+        <th class="column header" mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td class="column" mat-cell *matCellDef="let contact">{{ contact.name }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="email">
-      <th class="column header" mat-header-cell *matHeaderCellDef>Email</th>
-      <td class="column" mat-cell *matCellDef="let contact">
-        <a [href]="'mailto:'+contact.email" (click)="stopProp($event)">{{ contact.email }}</a>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="address">
+        <th class="column header" mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+        <td class="column" mat-cell *matCellDef="let contact">
+          <a [href]="contact.address | mapLink" target="_black" (click)="stopProp($event)">{{ contact.address }}</a>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="phone">
-      <th class="column header" mat-header-cell *matHeaderCellDef>Phone</th>
-      <td class="column" mat-cell *matCellDef="let contact">
-        <ng-container *ngIf="!platformService.isMobileDevice; else phoneWithLinks">{{ contact.phone | phone }}</ng-container>
-        <ng-template #phoneWithLinks>
-          <a (click)="platformService.openPhoneOptions(contact,$event)">{{ contact.phone | phone }}</a>
-        </ng-template>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="email">
+        <th class="column header" mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td class="column" mat-cell *matCellDef="let contact">
+          <a [href]="'mailto:'+contact.email" (click)="stopProp($event)">{{ contact.email }}</a>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let contact; columns: displayedColumns;" class="clickable" (click)="viewContact(contact)"></tr>
-  </table>
-</div>
+      <ng-container matColumnDef="phone">
+        <th class="column header" mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+        <td class="column" mat-cell *matCellDef="let contact">
+          <ng-container *ngIf="!platformService.isMobileDevice; else phoneWithLinks">{{ contact.phone | phone }}
+          </ng-container>
+          <ng-template #phoneWithLinks>
+            <a (click)="platformService.openPhoneOptions(contact,$event)">{{ contact.phone | phone }}</a>
+          </ng-template>
+        </td>
+      </ng-container>
 
-<ion-fab vertical="top" horizontal="end" slot="fixed" edge=true>
-  <ion-fab-button size="small" color="secondary" (click)="createContact()">
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let contact; columns: displayedColumns;" class="clickable" (click)="viewContact(contact)">
+      </tr>
+    </table>
+  </div>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed" edge=true>
+    <ion-fab-button size="small" color="secondary" (click)="createContact()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

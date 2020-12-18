@@ -15,6 +15,9 @@ export class AddressBookComponent implements OnInit {
 
   columns = [
     {
+      columnDef: 'image',
+      minVisibleWidth: 0,
+    },{
       columnDef: 'name',
       minVisibleWidth: 0,
     },{
@@ -49,22 +52,18 @@ export class AddressBookComponent implements OnInit {
   }
 
   async createContact(){
-    const mobileView = Math.min(window.innerWidth, window.innerHeight) < 500;
-
     const modal = await this.modalController.create({
       component: EditContactComponent,
-      cssClass: mobileView ? '' : 'contact-modal',
+      cssClass: this.platformService.isSmallScreen() ? '' : 'contact-modal',
       backdropDismiss: false,
     });
     return await modal.present();
   }
 
   async viewContact(contact: Contact){
-    const mobileView = Math.min(window.innerWidth, window.innerHeight) < 500;
-
     const modal = await this.modalController.create({
       component: ViewContactComponent,
-      cssClass: mobileView ? '' : 'contact-modal',
+      cssClass: this.platformService.isSmallScreen() ? '' : 'contact-modal',
       componentProps:{contact: contact},
     });
 

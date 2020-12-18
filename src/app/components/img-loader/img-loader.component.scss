@@ -1,0 +1,21 @@
+.img-loader-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .contact-img{
+        height: 125px;
+        width: 125px;
+        border-radius: 50%;
+        object-fit: contain;
+        padding: 10px;
+    }
+    
+    .placeholder-icon{
+        font-size: 125px;
+    }
+    
+    .edit-icon{
+        font-size: 25px;
+    }
+}

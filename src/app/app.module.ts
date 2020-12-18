@@ -11,11 +11,17 @@ import { AddressBookComponent } from './components/address-book/address-book.com
 import { EditContactComponent } from './components/address-book/edit-contact/edit-contact.component';
 import { ViewContactComponent } from './components/address-book/view-contact/view-contact.component';
 import { PhoneOptionsComponent } from './components/phone-options/phone-options.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ImgLoaderComponent } from './components/img-loader/img-loader.component';
+
 import { AddressBookService } from './services/address-book/address-book.service';
+import { PlatformService } from './services/platfom/platform.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSortModule  } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { PhonePipe } from './pipes/phone/phone.pipe';
 import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
@@ -27,6 +33,8 @@ import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
     EditContactComponent,
     ViewContactComponent,
     PhoneOptionsComponent,
+    MenuComponent,
+    ImgLoaderComponent,
     PhonePipe,
     MapLinkPipe],
   entryComponents: [EditContactComponent, ViewContactComponent, PhoneOptionsComponent],
@@ -37,11 +45,14 @@ import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
     BrowserAnimationsModule,
     MatTableModule,
     FormsModule,
+    MatDividerModule,
+    MatSortModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AddressBookService,
+    PlatformService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
