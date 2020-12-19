@@ -1,5 +1,7 @@
-.content{
-    display: flex;
-    flex-direction: column;
-    flex: auto;
+.fields{
+    background: transparent;
+
+    .field{
+        --background: transparent;
+    }
 }

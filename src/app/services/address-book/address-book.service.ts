@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Contact } from 'src/app/models/contact.model';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { pull } from 'lodash';
 import { BehaviorSubject } from 'rxjs';
 import { Label } from 'src/app/models/label.model';
 import { PlatformService } from '../platfom/platform.service';
+import { ManageLabelsComponent } from 'src/app/components/labels/manage-labels/manage-labels.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,36 +15,15 @@ export class AddressBookService {
   favoritesCount = 0;
   selectedFilterType: 'all' | 'favorites' = 'all';
   
-  labels: Label[] = [
-    {title:'test 1', id: 1, count: 0},
-    {title:'test 2', id: 2, count: 0},
-    {title:'test 3', id: 3, count: 0},
-    {title:'test 4', id: 4, count: 0},
-    {title:'test 5', id: 5, count: 0},
-    {title:'test 6', id: 6, count: 0},
-    {title:'test 7', id: 7, count: 0},
-  ];
+  labels: Label[] = [];
   selectedLabel: Label;
 
   _filterContacts: BehaviorSubject<Contact[]> = new BehaviorSubject([]);
   filterContacts$ = this._filterContacts.asObservable();
 
-  contacts: Contact[] = [
-    {name: 'person 1', address: '123 Secret Pl Garden City, NM 12345' , phone: 1234567890, email: 'test@test.com'},
-    {name: 'person 2', address: '' , phone: 2234567890, email: ''},
-    {name: 'person 3', address: '' , phone: 3234567890, email: ''},
-    {name: 'person 1', address: '123 Secret Pl Garden City, NM 12345' , phone: 1234567890, email: 'test@test.com'},
-    {name: 'person 1', address: '123 Secret Pl Garden City, NM 12345' , phone: 1234567890, email: 'test@test.com'},
-    {name: 'person 4', address: '' , phone: 4234567890, email: ''},
-    {name: 'person 1', address: '123 Secret Pl Garden City, NM 12345' , phone: 1234567890, email: 'test@test.com'},
-    {name: 'person 2', address: '' , phone: 2234567890, email: ''},
-    {name: 'person 3', address: '' , phone: 3234567890, email: ''},
-    {name: 'person 1', address: '123 Secret Pl Garden City, NM 12345' , phone: 1234567890, email: 'test@test.com'},
-    {name: 'person 1', address: '123 Secret Pl Garden City, NM 12345' , phone: 1234567890, email: 'test@test.com'},
-    {name: 'person 4', address: '' , phone: 4234567890, email: ''},
-  ]
+  contacts: Contact[] = [];
 
-  constructor(private alertController: AlertController, private platformService: PlatformService) {
+  constructor(private alertController: AlertController, private platformService: PlatformService, private modalController: ModalController) {
     this.filterContacts();
   }
 
@@ -53,7 +33,7 @@ export class AddressBookService {
       this.selectedLabel = null;
     }
     if(label){
-      this.selectedLabel = label
+      this.selectedLabel = label;
       this.selectedFilterType = null;
     }
 
@@ -119,6 +99,18 @@ export class AddressBookService {
         pull(contact.labels,deletedLabelIds);
       }
     });
+  }
+
+  async openManageLabels(){
+    const modal = await this.modalController.create({
+      component: ManageLabelsComponent,
+      cssClass: this.platformService.isSmallScreen() ? '' : 'manage-labels-modal',
+      backdropDismiss: false,
+    });
+
+    await modal.present();
+
+    return await modal.onWillDismiss();
   }
 
 }

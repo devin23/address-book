@@ -88,7 +88,7 @@ export class AddressBookComponent implements OnInit {
         favorites: this.addressBookService.selectedFilterType === 'favorites',
         label: this.addressBookService.selectedLabel
       },
-      cssClass: this.platformService.isSmallScreen() ? '' : 'modal-size',
+      cssClass: this.platformService.isSmallScreen() ? '' : 'edit-contact-modal',
       backdropDismiss: false,
     });
     return await modal.present();
@@ -97,7 +97,7 @@ export class AddressBookComponent implements OnInit {
   async viewContact(contact: Contact){
     const modal = await this.modalController.create({
       component: ViewContactComponent,
-      cssClass: this.platformService.isSmallScreen() ? '' : 'modal-size',
+      cssClass: this.platformService.isSmallScreen() ? '' : 'view-contact-modal',
       componentProps:{contact: contact},
     });
 

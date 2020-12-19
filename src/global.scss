@@ -26,9 +26,20 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
-.modal-size{
+.edit-contact-modal, .manage-labels-modal{
     --width: 350px;
-    --height: 660px;
+    --height: 665px;
+    --max-height: 80%;
+}
+
+.view-contact-modal{
+    --width: 350px;
+    --max-height: 80%;
+}
+
+.about-modal{
+    --width: 500px;
+    --max-height: 80%;
 }
 
 .phone-options-popover{
@@ -37,10 +48,6 @@
 
 .view-text-popover, .add-label-popover{
     --width: 300px;
-}
-
-.about-modal-size{
-    --width: 500px;
 }
 
 .hidden{

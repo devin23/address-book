@@ -36,7 +36,7 @@ export class ViewContactComponent implements OnInit {
   async edit(){
     const modal = await this.modalController.create({
       component: EditContactComponent,
-      cssClass: this.platformService.isSmallScreen() ? '' : 'modal-size',
+      cssClass: this.platformService.isSmallScreen() ? '' : 'edit-contact-modal',
       componentProps: {contact: this.contact},
       backdropDismiss: false,
     });

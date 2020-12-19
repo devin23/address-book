@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddressBookService } from 'src/app/services/address-book/address-book.service';
 import { MenuController, ModalController } from '@ionic/angular';
-import { ManageLabelsComponent } from '../labels/manage-labels/manage-labels.component';
 import { PlatformService } from 'src/app/services/platfom/platform.service';
 import { AboutComponent } from '../about/about.component';
 
@@ -26,20 +25,10 @@ export class MenuComponent implements OnInit {
     this.menuController.close();
   }
 
-  async manageLabels(){
-    const modal = await this.modalController.create({
-      component: ManageLabelsComponent,
-      cssClass: this.platformService.isSmallScreen() ? '' : 'modal-size',
-      backdropDismiss: false,
-    });
-
-    return await modal.present();
-  }
-
   async showAboutInfo(){
     const modal = await this.modalController.create({
       component: AboutComponent,
-      cssClass: this.platformService.isSmallScreen() ? '' : 'about-modal-size',
+      cssClass: this.platformService.isSmallScreen() ? '' : 'about-modal',
     });
 
     return await modal.present();

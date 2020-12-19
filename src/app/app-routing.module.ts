@@ -4,12 +4,12 @@ import { AddressBookComponent } from './components/address-book/address-book.com
 
 const routes: Routes = [
   {
-    path: 'address-list',
+    path: '',
     component: AddressBookComponent
   },
   {
-    path: '',
-    redirectTo: 'address-list',
+    path: '**',
+    redirectTo: '',
     pathMatch: 'full'
   },
 ];
