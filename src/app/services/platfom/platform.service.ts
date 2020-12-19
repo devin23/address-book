@@ -38,7 +38,8 @@ export class PlatformService {
     const toast = await this.toastController.create({
         message: message,
         color: color,
-        duration: 2500
+        duration: 2500,
+        buttons: [{icon:'close'}]
       });
       toast.present();
   }

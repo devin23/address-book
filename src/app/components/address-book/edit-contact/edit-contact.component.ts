@@ -35,6 +35,13 @@ export class EditContactComponent implements OnInit {
       this.setContactLabels();
     }
   }
+  @Input() set favorites(favorite: boolean){
+    if(favorite){
+      this.contact.favorite = favorite;
+      this.title += ' to Favorites';
+    }
+  }
+
   get contact(){
     return this._contact;
   }
@@ -66,7 +73,7 @@ export class EditContactComponent implements OnInit {
       }
       this.addressBookService.filterContacts();
 
-      await this.platformService.showToast(this.contact.name + ' saved!', 'secondary')
+      await this.platformService.showToast(this.contact.name ? this.contact.name  + ' saved!' : 'Saved!', 'secondary')
       await this.close();
     }
   }
@@ -125,4 +132,7 @@ export class EditContactComponent implements OnInit {
     return await popover.present();
   }
 
+  emptyForm(form){
+    return Object.values(form.value).filter(v => v).length === 0;
+  }
 }

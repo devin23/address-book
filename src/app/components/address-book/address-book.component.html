@@ -4,13 +4,13 @@
       <ion-menu-button menu="menu"></ion-menu-button>
     </ion-buttons>
     <ion-title mode="md">
-      Address Book - {{addressBookService.selectedFilterType || addressBookService.selectedLabel.title}}
+      Address Book - {{(addressBookService.selectedFilterType | titlecase) || addressBookService.selectedLabel.title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-toolbar>
-  <ion-searchbar placeholder="Search" [(ngModel)]="filterText" (ionChange)="applyFilter()"></ion-searchbar>
+  <ion-searchbar placeholder="Search" [(ngModel)]="filterText" (ionChange)="applyFilter()" class="filter-input"></ion-searchbar>
 </ion-toolbar>
 
 <ion-content [fullscreen]="true">
@@ -49,7 +49,7 @@
       </ng-container>
 
       <ng-container matColumnDef="phone">
-        <th class="column header" mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+        <th class="column header phone-column" mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
         <td class="column" mat-cell *matCellDef="let contact">
           <ng-container *ngIf="!platformService.isMobileDevice; else phoneWithLinks">{{ contact.phone | phone }}
           </ng-container>

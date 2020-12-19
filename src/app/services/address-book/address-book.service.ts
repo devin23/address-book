@@ -12,7 +12,7 @@ import { PlatformService } from '../platfom/platform.service';
 export class AddressBookService {
 
   favoritesCount = 0;
-  selectedFilterType = 'all';
+  selectedFilterType: 'all' | 'favorites' = 'all';
   
   labels: Label[] = [
     {title:'test 1', id: 1, count: 0},
@@ -84,7 +84,7 @@ export class AddressBookService {
             this.updateLabelCounts(contact.labels,null);
             pull(this.contacts,contact);
             this.filterContacts();
-            await this.platformService.showToast(contact.name + ' deleted!')
+            await this.platformService.showToast(contact.name ? contact.name + ' deleted!' : 'Deleted!');
             await closeFunction('delete');
           }
         }
