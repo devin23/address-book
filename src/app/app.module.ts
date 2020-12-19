@@ -14,6 +14,8 @@ import { PhoneOptionsComponent } from './components/phone-options/phone-options.
 import { MenuComponent } from './components/menu/menu.component';
 import { ImgLoaderComponent } from './components/img-loader/img-loader.component';
 import { ViewTextComponent } from './components/view-text/view-text.component';
+import { ManageLabelsComponent } from './components/labels/manage-labels/manage-labels.component';
+import { SelectLabelComponent } from './components/labels/select-label/select-label.component';
 
 import { AddressBookService } from './services/address-book/address-book.service';
 import { PlatformService } from './services/platfom/platform.service';
@@ -23,7 +25,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSortModule  } from '@angular/material/sort';
-import { MatMenuModule  } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 import { PhonePipe } from './pipes/phone/phone.pipe';
 import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
@@ -38,9 +39,18 @@ import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
     MenuComponent,
     ImgLoaderComponent,
     ViewTextComponent,
+    ManageLabelsComponent,
+    SelectLabelComponent,
     PhonePipe,
     MapLinkPipe],
-  entryComponents: [EditContactComponent, ViewContactComponent, PhoneOptionsComponent, ViewTextComponent],
+  entryComponents: [
+    EditContactComponent,
+    ViewContactComponent,
+    PhoneOptionsComponent,
+    ViewTextComponent,
+    ManageLabelsComponent,
+    SelectLabelComponent,
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -50,7 +60,6 @@ import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
     FormsModule,
     MatDividerModule,
     MatSortModule,
-    MatMenuModule
   ],
   providers: [
     StatusBar,

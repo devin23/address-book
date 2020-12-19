@@ -1,0 +1,9 @@
+<div class="label-container">
+  <ion-label>Select Label</ion-label>
+  <div>
+    <ion-chip *ngFor="let label of filteredLabels" (click)="popoverController.dismiss(label.id)">
+      <ion-label>{{label.title}}</ion-label>
+    </ion-chip>
+  </div>
+</div>
+  

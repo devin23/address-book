@@ -7,31 +7,23 @@
     .input-field{
         --padding-start: 0;
 
-        .bottom-margin{
-            margin-bottom: 14px;
+        .label-placeholder{
+            width: 45px;
+            flex: inherit;
+            min-width: 45px;
         }
     }
-
-    .label-chip{
-        cursor: auto;
-        background: var(--ion-color-light-tint);
-
-        .close-icon{
-            cursor: pointer;
-        }
-    }
-
+    
     .buttons-container{
         display: flex;
         margin-top: 10px;
-
+        
         .action-button{
             flex: auto;
         }
     }
-
+    
     .left-margin{
         margin-left: 20px;
     }
-
 }

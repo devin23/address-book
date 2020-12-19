@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { AddressBookService } from 'src/app/services/address-book/address-book.service';
 import { EditContactComponent } from '../edit-contact/edit-contact.component';
 import { PlatformService } from 'src/app/services/platfom/platform.service';
+import { Label } from 'src/app/models/label.model';
 
 @Component({
   selector: 'app-view-contact',
@@ -16,28 +17,33 @@ export class ViewContactComponent implements OnInit {
 
   close = async () => await this.modalController.dismiss();
 
+  contactLabels: Label[] = [];
+
   constructor(
     private modalController: ModalController,
     private addressBookService: AddressBookService,
     public platformService: PlatformService,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setContactLabels();
+  }
 
   async delete(){
-    await this.addressBookService.delete(this.contact, this.close);
+    await this.addressBookService.deleteContact(this.contact, this.close);
   }
 
   async edit(){
     const modal = await this.modalController.create({
       component: EditContactComponent,
-      cssClass: this.platformService.isSmallScreen() ? '' : 'contact-modal',
+      cssClass: this.platformService.isSmallScreen() ? '' : 'modal-size',
       componentProps: {contact: this.contact},
       backdropDismiss: false,
     });
 
-    modal.onDidDismiss().then(async data => {
-      if(data.data === 'delete'){
+    modal.onDidDismiss().then(async ({data}) => {
+      this.setContactLabels();
+      if(data === 'delete'){
         setTimeout( async () => await this.close());
       }
     });
@@ -49,6 +55,10 @@ export class ViewContactComponent implements OnInit {
     this.contact.favorite = !this.contact.favorite;
     this.addressBookService.favoritesCount += this.contact.favorite ? 1 : -1;
     this.addressBookService.filterContacts();
+  }
+
+  setContactLabels(){
+    this.contactLabels = this.addressBookService.labels?.filter((label) => this.contact.labels?.includes(label.id)) || [];
   }
 
 }

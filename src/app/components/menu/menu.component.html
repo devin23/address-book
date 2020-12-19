@@ -1,7 +1,7 @@
 <ion-menu side="start" type="overlay" menuId="menu" contentId="main" class="page-menu">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Categories</ion-title>
+      <ion-title mode="md">Categories</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
@@ -13,15 +13,28 @@
           <span>({{addressBookService.contacts.length}})</span>
         </ion-label>
       </ion-item>
-      <ion-item class="clickable" [class.active]="addressBookService.selectedFilterType === 'all'" (click)="filterContacts('favorites')">
+      <ion-item class="clickable" (click)="filterContacts('favorites')">
         <ion-icon name="star" slot="start" [color]=" addressBookService.selectedFilterType === 'favorite' ? 'secondary' : ''"></ion-icon>
         <ion-label class="space-between" [color]=" addressBookService.selectedFilterType === 'favorite' ? 'secondary' : ''">
           <span>Favorites</span>
           <span>({{addressBookService.favoritesCount}})</span>
         </ion-label>
       </ion-item>
+
       <mat-divider></mat-divider>
 
+      <ion-item>
+        <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+        <ion-label>Labels</ion-label>
+      </ion-item>
+      <ion-item class="clickable" *ngFor="let label of addressBookService.labels" [class.active]="addressBookService.selectedLabel?.id === label.id" (click)="filterContacts(null ,label)">
+        <ion-label class="space-between" [color]="addressBookService.selectedLabel?.id === label.id ? 'secondary' : ''">
+          <span>{{label.title}}</span>
+          <span>({{label.count}})</span>
+        </ion-label>
+      </ion-item>
+
+      <ion-button expand="block" (click)="manageLabels()" color="light">Manage Labels</ion-button>
     </ion-list>
   </ion-content>
 </ion-menu>

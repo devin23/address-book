@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title mode="md">
-      {{edit ? 'Edit ' : 'Add '}} Contact
+      {{edit ? 'Edit ' : 'Add '}} {{title}}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button fill="clear" (click)="delete()" color="danger" size="small" *ngIf="edit">
@@ -37,9 +37,23 @@
       <ion-label position="floating">Note</ion-label>
       <ion-textarea name="note" [(ngModel)]="contact.note" clearInput></ion-textarea>
     </ion-item>
+    <ion-item class="input-field bottom-margin">
+      <ion-label class="ion-text-wrap">
+        <div>Labels</div>
+        <div>
+          <ion-chip *ngFor="let label of contactLabels" class="label-chip">
+            <ion-label>{{label.title}}</ion-label>
+            <ion-icon name="close" class="close-icon" (click)="removeLabel(label)"></ion-icon>
+          </ion-chip>
+          <ion-button fill="clear" (click)="addLabel($event)" color="secondary" size="small">
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-label>
+    </ion-item>
   </ion-content>
   <div class="buttons-container">
-    <ion-button class="action-button" #cancelButton slot="end" (click)="cancel(contactForm)" color="light">Cancel</ion-button>
+    <ion-button class="action-button" slot="end" (click)="cancel(contactForm)" color="light">Cancel</ion-button>
     <ion-button class="action-button left-margin" slot="end" type="submit" color="secondary">Save</ion-button>
   </div>
 </form>

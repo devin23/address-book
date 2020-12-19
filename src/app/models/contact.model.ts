@@ -6,4 +6,5 @@ export interface Contact {
     img?:string;
     note?: string;
     favorite?: boolean;
+    labels?: number[];
 }

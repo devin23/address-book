@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title mode="md">
+      Manage Labels
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="cancel(labelsForm)" color="medium" size="small">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<form #labelsForm="ngForm" (ngSubmit)="save(labelsForm)" (keyup.enter)="save(labelsForm)" class="content">
+
+  <ion-content>
+    <ng-container *ngFor="let label of labels; let i = index">
+
+      <ion-item class="input-field">
+        <ion-label position="fixed" class="label-placeholder">Label:</ion-label>
+        <ion-input [name]="label.id" required [(ngModel)]="label.title" clearInput></ion-input>
+        <ion-icon name="trash-outline" slot="end" (click)="delete(label)" class="clickable"></ion-icon>
+      </ion-item>
+      <span [class.hidden]="labelsForm.controls[label.id]?.valid" class="input-error-message">Required</span>
+    </ng-container>
+
+    <ion-item lines="none">
+      <ion-button fill="clear" (click)="add()" color="secondary" size="small">
+        <ion-icon name="add-outline"></ion-icon>
+        <ion-label>Add Label</ion-label>
+      </ion-button>
+    </ion-item>
+  </ion-content>
+  <div class="buttons-container">
+    <ion-button class="action-button" slot="end" (click)="cancel(labelsForm)" color="light">Cancel</ion-button>
+    <ion-button class="action-button left-margin" slot="end" type="submit" color="secondary">Save</ion-button>
+  </div>
+</form>

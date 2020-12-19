@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Platform, PopoverController } from '@ionic/angular';
+import { Platform, PopoverController, ToastController } from '@ionic/angular';
 import { Contact } from 'src/app/models/contact.model';
 import { PhoneOptionsComponent } from 'src/app/components/phone-options/phone-options.component';
 
@@ -10,7 +10,7 @@ export class PlatformService {
 
   isMobileDevice;
 
-  constructor(private platform:Platform, private popoverController: PopoverController) {
+  constructor(private platform:Platform, private popoverController: PopoverController, private toastController: ToastController) {
     this.isMobileDevice = 
       !this.platform.is('desktop') 
       && !this.platform.is('tablet') 
@@ -32,5 +32,14 @@ export class PlatformService {
       event: event,
     });
     return await popover.present();
+  }
+
+  async showToast(message, color = 'medium'){
+    const toast = await this.toastController.create({
+        message: message,
+        color: color,
+        duration: 2500
+      });
+      toast.present();
   }
 }

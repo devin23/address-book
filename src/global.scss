@@ -26,7 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
-.contact-modal{
+.modal-size{
     --width: 350px;
     --height: 600px;
 }
@@ -35,7 +35,7 @@
     --width: 100px;
 }
 
-.view-text-popover{
+.view-text-popover, .add-label-popover{
     --width: 300px;
 }
 
@@ -49,4 +49,9 @@
 
 .clickable{
     cursor: pointer;
+}
+
+.input-error-message{
+    font-size: 12px;
+    color: var(--ion-color-danger);
 }

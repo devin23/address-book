@@ -28,16 +28,16 @@ export class AddressBookComponent implements OnInit {
       minVisibleWidth: 0,
     },{
       columnDef: 'address',
-      minVisibleWidth: 400,
-    },{
-      columnDef: 'email',
       minVisibleWidth: 600,
     },{
-      columnDef: 'phone',
+      columnDef: 'email',
       minVisibleWidth: 800,
     },{
-      columnDef: 'note',
+      columnDef: 'phone',
       minVisibleWidth: 900,
+    },{
+      columnDef: 'note',
+      minVisibleWidth: 950,
     },
   ];
   displayedColumns: string[];
@@ -84,7 +84,8 @@ export class AddressBookComponent implements OnInit {
   async createContact(){
     const modal = await this.modalController.create({
       component: EditContactComponent,
-      cssClass: this.platformService.isSmallScreen() ? '' : 'contact-modal',
+      componentProps: {label: this.addressBookService.selectedLabel},
+      cssClass: this.platformService.isSmallScreen() ? '' : 'modal-size',
       backdropDismiss: false,
     });
     return await modal.present();
@@ -93,7 +94,7 @@ export class AddressBookComponent implements OnInit {
   async viewContact(contact: Contact){
     const modal = await this.modalController.create({
       component: ViewContactComponent,
-      cssClass: this.platformService.isSmallScreen() ? '' : 'contact-modal',
+      cssClass: this.platformService.isSmallScreen() ? '' : 'modal-size',
       componentProps:{contact: contact},
     });
 
