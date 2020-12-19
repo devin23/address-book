@@ -16,6 +16,7 @@ import { ImgLoaderComponent } from './components/img-loader/img-loader.component
 import { ViewTextComponent } from './components/view-text/view-text.component';
 import { ManageLabelsComponent } from './components/labels/manage-labels/manage-labels.component';
 import { SelectLabelComponent } from './components/labels/select-label/select-label.component';
+import { AboutComponent } from './components/about/about.component';
 
 import { AddressBookService } from './services/address-book/address-book.service';
 import { PlatformService } from './services/platfom/platform.service';
@@ -41,8 +42,10 @@ import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
     ViewTextComponent,
     ManageLabelsComponent,
     SelectLabelComponent,
+    AboutComponent,
     PhonePipe,
-    MapLinkPipe],
+    MapLinkPipe
+  ],
   entryComponents: [
     EditContactComponent,
     ViewContactComponent,
@@ -50,6 +53,7 @@ import { MapLinkPipe } from './pipes/map-link/map-link.pipe';
     ViewTextComponent,
     ManageLabelsComponent,
     SelectLabelComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

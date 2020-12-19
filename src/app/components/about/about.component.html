@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title mode="md">
+      About
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="close()" color="medium" size="small">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="info-container">
+    <div class="topic-heading">Overview</div>
+    <div class="bottom-margin">
+      In this app you can create and organize your contacts into an address book.
+      You can add an image, name, address, email, phone number, notes, and customized labels to contacts.
+      Labels can be used to create groups of contacts.
+      You can use the quick links to pull up the address on a map, start an email, and call or text your contacts' phone number.
+      You can also favorite a contact and view all favorited contacts using the side menu.
+    </div>
+
+    <div class="topic-heading">Creating a Contact</div>
+    <div class="bottom-margin">
+      Click the plus icon in the top right corner to create a contact.
+      When you are creating a contact, you must add at least one detail, other than an image, to save the contact.
+    </div>
+    <div class="bottom-margin">
+      When creating a contact while viewing a label group, the label will be pre-selected to the contact for you. The label can be unselected.
+      When creating a contact while viewing favorited contacts, the contact you are creating will be automatically favorited.
+    </div>
+
+    <div class="topic-heading">Address Book Table</div>
+    <div class="bottom-margin">
+      The table can be sorted by clicking on any column header text.
+      The contacts in the table can be filtered by typing into the search bar.
+      The table will show contacts that have data in one of the visible columns that contain the search text.
+      If a note has been added to the contact, it can be viewed by clicking on the note icon in the table.
+      Clicking on the address and email of a contact in the table or view contact pop-up will pull up a map of the address and email page, respectively.
+      All info of a contact can be viewed in a pop-up by clicking on the contact row. 
+    </div>
+
+    <div class="topic-heading">Labels</div>
+    <div class="bottom-margin">
+      Labels are a way to organize your contacts into groups. Multiple labels can be added to a contact.
+      Labels can be created, edited, and deleted by clicking on the edit icon in the side menu.
+      Editing a label name will update all contacts with that label.
+      Clicking on a label in the side menu will show all contacts with that label.
+    </div>
+
+    <div class="topic-heading">Responsive Design</div>
+    <div class="bottom-margin">
+      App is themed to light or dark mode depending on browser or device settings.
+      App is responsive to screen size.
+      Visible table columns adjust to screen size.
+      Pop-ups will fill the page on small screens.  
+      When on a mobile device, clicking a phone number in the table or view contact pop-up will open options to call or text the number.
+    </div>
+
+    <div class="topic-heading">Other Features</div>
+    <div>
+      In the view contact pop-up you will find icons to favorite, edit, or delete a contact. 
+      A contact can also be deleted while editing.
+      There are confirmation pop-ups to prevent accidentally deleting a contact and canceling changes.
+    </div>
+  </div>
+</ion-content>

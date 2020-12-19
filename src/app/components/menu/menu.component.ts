@@ -3,6 +3,7 @@ import { AddressBookService } from 'src/app/services/address-book/address-book.s
 import { MenuController, ModalController } from '@ionic/angular';
 import { ManageLabelsComponent } from '../labels/manage-labels/manage-labels.component';
 import { PlatformService } from 'src/app/services/platfom/platform.service';
+import { AboutComponent } from '../about/about.component';
 
 @Component({
   selector: 'app-menu',
@@ -30,6 +31,15 @@ export class MenuComponent implements OnInit {
       component: ManageLabelsComponent,
       cssClass: this.platformService.isSmallScreen() ? '' : 'modal-size',
       backdropDismiss: false,
+    });
+
+    return await modal.present();
+  }
+
+  async showAboutInfo(){
+    const modal = await this.modalController.create({
+      component: AboutComponent,
+      cssClass: this.platformService.isSmallScreen() ? '' : 'about-modal-size',
     });
 
     return await modal.present();

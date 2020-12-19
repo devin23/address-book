@@ -28,7 +28,7 @@
 
 .modal-size{
     --width: 350px;
-    --height: 600px;
+    --height: 660px;
 }
 
 .phone-options-popover{
@@ -37,6 +37,10 @@
 
 .view-text-popover, .add-label-popover{
     --width: 300px;
+}
+
+.about-modal-size{
+    --width: 500px;
 }
 
 .hidden{
@@ -49,6 +53,11 @@
 
 .clickable{
     cursor: pointer;
+
+    &:hover{
+        --background: var(--ion-color-light);
+        background: var(--ion-color-light);
+    }
 }
 
 .input-error-message{
