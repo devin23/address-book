@@ -93,10 +93,13 @@ export class AddressBookService {
   updateLabels(labels: Label[], deletedLabelIds: number[]){
     this.labels = labels;
 
-    this.contacts.forEach(contact => {
-      if(contact.labels){
-        pull(contact.labels,deletedLabelIds);
-      }
-    });
+    if(deletedLabelIds && deletedLabelIds.length){
+
+      this.contacts.forEach(contact => {
+        if(contact.labels){
+          pull(contact.labels,...deletedLabelIds);
+        }
+      });
+    }
   }
 }

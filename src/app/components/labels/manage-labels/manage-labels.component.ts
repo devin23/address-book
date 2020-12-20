@@ -3,6 +3,7 @@ import { ModalController, AlertController } from '@ionic/angular';
 import { cloneDeep, pull } from 'lodash';
 import { Label } from 'src/app/models/label.model';
 import { AddressBookService } from 'src/app/services/address-book/address-book.service';
+import { PlatformService } from 'src/app/services/platfom/platform.service';
 
 @Component({
   selector: 'app-manage-labels',
@@ -16,13 +17,17 @@ export class ManageLabelsComponent implements OnInit {
   labels:Label[] = [];
   deletedLabelIds: number[] = [];
 
-  constructor(private modalController: ModalController, private alertController: AlertController, private addressBookService: AddressBookService) { }
+  constructor(private modalController: ModalController,
+    private alertController: AlertController,
+    private addressBookService: AddressBookService,
+    private platformService: PlatformService
+  ) { }
 
   ngOnInit() {
     this.labels = cloneDeep(this.addressBookService.labels);
 
     if(!this.labels.length){
-      this.add(500);
+      this.add(750);
     }
   }
 
@@ -71,6 +76,7 @@ export class ManageLabelsComponent implements OnInit {
     if(form.valid){
       this.addressBookService.updateLabels(this.labels, this.deletedLabelIds);
 
+      this.platformService.showToast('Labels Saved!','secondary')
       await this.close();
     } else {
       form.control.markAllAsTouched();
