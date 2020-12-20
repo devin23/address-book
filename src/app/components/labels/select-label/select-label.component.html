@@ -1,18 +1,13 @@
 <div class="label-container">
-  <ng-container  *ngIf="!noLabels; else createLabels">
-    <ion-label>Select Label</ion-label>
-    <div>
-      <ion-chip *ngFor="let label of filteredLabels" (click)="popoverController.dismiss(label.id)">
-        <ion-label>{{label.title}}</ion-label>
-      </ion-chip>
-    </div>
-  </ng-container>
-  <ng-template #createLabels>
-    <div>No labels created</div>
-    <ion-button fill="clear" (click)="openManageLabels()" color="secondary" size="small">
-      <ion-icon name="add-outline"></ion-icon>
-      <ion-label>Create Labels</ion-label>
-    </ion-button>
-  </ng-template>
+  <ion-label>Labels</ion-label>
+  <div>
+    <ion-chip *ngFor="let label of filteredLabels" (click)="popoverController.dismiss(label.id)">
+      <ion-label>{{label.title}}</ion-label>
+    </ion-chip>
+  </div>
+  <ion-button fill="clear" (click)="openManageLabels()" color="secondary" size="small">
+    <ion-icon slot="start" name="add-outline"></ion-icon>
+    Create Labels
+  </ion-button>
 </div>
   
