@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AddressBookService } from 'src/app/services/address-book/address-book.service';
 import { Label } from 'src/app/models/label.model';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular';
+import { ManageLabelsComponent } from '../manage-labels/manage-labels.component';
+import { PlatformService } from 'src/app/services/platfom/platform.service';
 
 @Component({
   selector: 'app-select-label',
@@ -16,14 +18,26 @@ export class SelectLabelComponent implements OnInit {
   }
   selectedLabelValue: number[];
   filteredLabels: Label[] = [];
-  noLabels: boolean;
 
-  constructor(private addressBookService: AddressBookService, public popoverController: PopoverController) { }
+  constructor(
+    private addressBookService: AddressBookService,
+    public popoverController: PopoverController,
+    private modalController: ModalController,
+    private platformService: PlatformService,
+  ) { }
 
   ngOnInit() {}
 
   async openManageLabels(){
-    await this.addressBookService.openManageLabels();
+    const modal = await this.modalController.create({
+      component: ManageLabelsComponent,
+      cssClass: this.platformService.isSmallScreen() ? '' : 'manage-labels-modal',
+      backdropDismiss: false,
+    });
+
+    await modal.present();
+
+    await modal.onWillDismiss();
 
     this.setFilteredLabels();
   }
@@ -34,8 +48,6 @@ export class SelectLabelComponent implements OnInit {
     } else {
       this.filteredLabels = this.addressBookService.labels;
     }
-    
-    this.noLabels = !this.addressBookService.labels.length;
   }
 
 }

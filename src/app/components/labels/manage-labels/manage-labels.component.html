@@ -12,12 +12,12 @@
 </ion-header>
 <form #labelsForm="ngForm" (ngSubmit)="save(labelsForm)" (keyup.enter)="save(labelsForm)" class="content">
 
-  <ion-content>
+  <div class="fields">
     <ng-container *ngFor="let label of labels; let i = index">
 
       <ion-item class="input-field no-background">
         <ion-label position="fixed" class="label-placeholder">Label:</ion-label>
-        <ion-input [name]="label.id" required [(ngModel)]="label.title" clearInput></ion-input>
+        <ion-input #labelInput [name]="label.id" required [(ngModel)]="label.title" clearInput></ion-input>
         <ion-icon name="trash-outline" slot="end" (click)="delete(label)" class="clickable"></ion-icon>
       </ion-item>
       <span [class.hidden]="labelsForm.controls[label.id]?.valid" class="input-error-message">Required</span>
@@ -29,7 +29,7 @@
         <ion-label>New Label</ion-label>
       </ion-button>
     </ion-item>
-  </ion-content>
+  </div>
   <div class="buttons-container">
     <ion-button (click)="cancel(labelsForm)" fill="outline" color="medium">Cancel</ion-button>
     <ion-button type="submit" fill="outline" color="secondary">Save</ion-button>

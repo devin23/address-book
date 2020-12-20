@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Contact } from 'src/app/models/contact.model';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { pull } from 'lodash';
 import { BehaviorSubject } from 'rxjs';
 import { Label } from 'src/app/models/label.model';
 import { PlatformService } from '../platfom/platform.service';
-import { ManageLabelsComponent } from 'src/app/components/labels/manage-labels/manage-labels.component';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +22,7 @@ export class AddressBookService {
 
   contacts: Contact[] = [];
 
-  constructor(private alertController: AlertController, private platformService: PlatformService, private modalController: ModalController) {
+  constructor(private alertController: AlertController, private platformService: PlatformService) {
     this.filterContacts();
   }
 
@@ -100,17 +99,4 @@ export class AddressBookService {
       }
     });
   }
-
-  async openManageLabels(){
-    const modal = await this.modalController.create({
-      component: ManageLabelsComponent,
-      cssClass: this.platformService.isSmallScreen() ? '' : 'manage-labels-modal',
-      backdropDismiss: false,
-    });
-
-    await modal.present();
-
-    return await modal.onWillDismiss();
-  }
-
 }

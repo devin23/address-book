@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, ElementRef } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular';
 import { cloneDeep, pull } from 'lodash';
 import { Label } from 'src/app/models/label.model';
@@ -11,6 +11,8 @@ import { AddressBookService } from 'src/app/services/address-book/address-book.s
 })
 export class ManageLabelsComponent implements OnInit {
 
+  @ViewChildren('labelInput') items:QueryList<any>;
+
   labels:Label[] = [];
   deletedLabelIds: number[] = [];
 
@@ -18,6 +20,10 @@ export class ManageLabelsComponent implements OnInit {
 
   ngOnInit() {
     this.labels = cloneDeep(this.addressBookService.labels);
+
+    if(!this.labels.length){
+      this.add(500);
+    }
   }
 
   async close(){
@@ -49,12 +55,16 @@ export class ManageLabelsComponent implements OnInit {
     this.deletedLabelIds.push(label.id);
   }
   
-  add(){
+  add(timeout = 250){
     this.labels.push({
       title: '',
       id: Math.round(Math.random() * 100000000),
       count: 0,
-    })
+    });
+
+    setTimeout(() => {
+      this.items.last.setFocus();
+    },timeout)
   }
 
   async save(form){

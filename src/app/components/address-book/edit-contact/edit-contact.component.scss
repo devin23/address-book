@@ -3,13 +3,19 @@
     display: flex;
     flex-direction: column;
     flex: auto;
+    overflow: auto;
 
-    .input-field{
-        --padding-start: 0;
-        --background: transparent;
-
-        .bottom-margin{
-            margin-bottom: 14px;
+    .fields{
+        overflow: auto;
+        flex: auto;
+        
+        .input-field{
+            --padding-start: 0;
+            --background: transparent;
+            
+            .bottom-margin{
+                margin-bottom: 14px;
+            }
         }
     }
 

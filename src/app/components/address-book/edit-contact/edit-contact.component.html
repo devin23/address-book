@@ -14,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 <form #contactForm="ngForm" (ngSubmit)="save(contactForm)" (keyup.enter)="save(contactForm)" class="content">
-  <ion-content>
+  <div class="fields">
     <app-img-loader [(image)]="contact.img" canEdit=true></app-img-loader>
     <ion-item class="input-field bottom-margin">
       <ion-label position="floating">Name</ion-label>
@@ -51,7 +51,7 @@
         </div>
       </ion-label>
     </ion-item>
-  </ion-content>
+  </div>
   <div class="buttons-container">
     <ion-button (click)="cancel(contactForm)" fill="outline" color="medium">Cancel</ion-button>
     <ion-button type="submit" fill="outline" color="secondary" [disabled]="emptyForm(contactForm)">Save</ion-button>

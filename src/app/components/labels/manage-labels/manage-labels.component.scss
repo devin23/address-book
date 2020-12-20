@@ -3,19 +3,21 @@
     display: flex;
     flex-direction: column;
     flex: auto;
+    overflow: auto;
 
-    .input-field{
-        --padding-start: 0;
+    .fields{
+        overflow: auto;
+        flex: auto;
 
-        .label-placeholder{
-            width: 50px;
-            flex: inherit;
-            min-width: 50px;
+        .input-field{
+            --padding-start: 0;
+
+            .label-placeholder{
+                width: 50px;
+                flex: inherit;
+                min-width: 50px;
+            }
         }
-    }
-
-    .field{
-        --background: transparent;
     }
     
     .buttons-container{
