@@ -19,15 +19,9 @@
     }
     
     .buttons-container{
-        display: flex;
+        display: grid;
         margin-top: 10px;
-        
-        .action-button{
-            flex: auto;
-        }
-    }
-    
-    .left-margin{
-        margin-left: 20px;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
     }
 }

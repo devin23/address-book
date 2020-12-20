@@ -4,16 +4,16 @@
       View Contact
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="favorite()" color="warning" size="small">
+      <ion-button (click)="favorite()" color="warning">
         <ion-icon [name]="'star' + (contact.favorite ? '' : '-outline')"></ion-icon>
       </ion-button>
-      <ion-button fill="clear" (click)="edit()" color="secondary" size="small">
+      <ion-button (click)="edit()" color="secondary">
         <ion-icon name="create-outline"></ion-icon>
       </ion-button>
-      <ion-button  fill="clear" (click)="delete()" color="danger" size="small">
+      <ion-button  (click)="delete()" color="danger">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
-      <ion-button fill="clear" (click)="close()" color="medium" size="small">
+      <ion-button (click)="close()" color="medium">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
   </ion-buttons>

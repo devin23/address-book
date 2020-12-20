@@ -58,6 +58,11 @@
     display: none;
 }
 
+.no-background{
+    background: transparent;
+    --background: transparent;
+}
+
 .clickable{
     cursor: pointer;
 

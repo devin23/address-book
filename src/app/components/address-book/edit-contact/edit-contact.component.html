@@ -4,10 +4,10 @@
       {{edit ? 'Edit ' : 'Add '}} {{title}}
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="delete()" color="danger" size="small" *ngIf="edit">
+      <ion-button (click)="delete()" color="danger" *ngIf="edit">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
-      <ion-button fill="clear" (click)="cancel(contactForm)" color="medium" size="small">
+      <ion-button (click)="cancel(contactForm)" color="medium">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -53,7 +53,7 @@
     </ion-item>
   </ion-content>
   <div class="buttons-container">
-    <ion-button class="action-button" slot="end" (click)="cancel(contactForm)" color="light">Cancel</ion-button>
-    <ion-button class="action-button left-margin" slot="end" type="submit" color="secondary" [disabled]="emptyForm(contactForm)">Save</ion-button>
+    <ion-button (click)="cancel(contactForm)" fill="outline" color="medium">Cancel</ion-button>
+    <ion-button type="submit" fill="outline" color="secondary" [disabled]="emptyForm(contactForm)">Save</ion-button>
   </div>
 </form>

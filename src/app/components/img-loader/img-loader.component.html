@@ -7,7 +7,7 @@
     <ion-icon name="person-circle-outline" class="placeholder-icon"></ion-icon>
   </ng-template>
   <ion-button fill="clear" (click)="load.click()" color="secondary" size="small" *ngIf="canEdit">
-    <ion-icon name="pencil-outline"></ion-icon>
-    <ion-label>Edit Image</ion-label>
+    <ion-icon slot="start" name="pencil-outline"></ion-icon>
+    Edit Image
   </ion-button>
 </div>
